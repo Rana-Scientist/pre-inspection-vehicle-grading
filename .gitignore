@@ -1,17 +1,3 @@
-# Python
-*.pyc
-__pycache__/
-*.pyo
-*.pyd
-*.pdb
-*.egg
-*.egg-info/
-dist/
-build/
-.eggs/
-*.manifest
-*.spec
-
 # Virtual Environment
 pre-inspection_venv/
 venv/
@@ -20,7 +6,13 @@ env/
 env.bak/
 venv.bak/
 
-# Jupyter Notebooks
+# Python caches
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Jupyter
 .ipynb_checkpoints/
 
 # OS files
@@ -33,5 +25,3 @@ Thumbs.db
 
 # Logs
 *.log
-
-# Git LFS placeholder (if needed later)
