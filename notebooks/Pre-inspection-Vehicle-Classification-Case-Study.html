@@ -1,0 +1,2560 @@
+
+<html>
+<head>
+<title>Rana Attique | Pre-Inspection Vehicle Classification - Case Study (2025)</title>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>
+
+<style>
+table {border-collapse: collapse; width:100%;}
+th, td {padding: 6px; text-align: center; border-bottom: 2px solid #ddd; font-size:14px;}
+tr:hover {background-color: #f0f8ff;}
+h2, h3, h4 {padding-top: 10px;}
+li {margin-bottom:8px;}
+</style>
+</head>
+
+<body>
+<div class='container'>
+
+<center>
+<h2><b>Pre-Inspection Vehicle Classification Case Study (ML-Driven)</b></h2>
+<h4>Presented By: <b>Rana Touqeer Attique</b></h4>
+<a href='https://www.linkedin.com/in/rprof' target='_blank'><b>Visit LinkedIn Profile</b></a>
+
+
+<section class="my-3" style="text-align:center;">
+  <h6 style="margin-top:8px; font-weight:600;">
+    This dataset has been curated exclusively for research and learning purposes using a combination of simulated (Mockaroo) and real-world samples. 
+    The project follows a complete end-to-end data and machine learning lifecycle — beginning with Extract-Transform-Load (ETL), data cleaning, 
+    imputation, exploratory analysis, correlation diagnostics, feature engineering, and multi-class machine learning with performance evaluation 
+    to ensure insights are statistically valid and practically actionable.
+  </h6>
+
+  <div class="mt-3" style="text-align:center;">
+    <strong>Key stages covered:</strong><br>
+
+    <ul style="display:inline-block; text-align:left; margin-top:8px;">
+      <li>Extract–Transform–Load (ETL) Process</li>
+      <li>Data Cleaning and Wrangling</li>
+      <li>Imputation: Missing Values & Outlier Treatment</li>
+      <li>Exploratory Data Analysis (EDA)</li>
+      <li>Descriptive and Quantile Analysis</li>
+      <li>Correlation (Linear & Rank-Based)</li>
+      <li>Feature Engineering</li>
+      <li>Data Preparation for Multi-Class Classification</li>
+      <li>Model Training & Testing</li>
+      <li>Performance Evaluation using Multiple Metrics</li>
+    </ul>
+  </div>
+</section>
+
+
+ <hr>
+<h4><b> Data Preparation & Standardization</b></h4>
+
+<h6><b>• Column Naming & Structural Validation</b></h6>
+<li>Identified inconsistencies including unnamed columns, special characters, numeric headers, and spacing issues, followed by normalization to ensure schema integrity.</li>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Columns_Before</th>
+      <th>Columns_After</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>Column_0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>City</td>
+      <td>City</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>County</td>
+      <td>County</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>!@#$%^&amp;*()%Category</td>
+      <td>Category</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Manufacturer</td>
+      <td>Manufacturer</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Model</td>
+      <td>Model</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Colour&amp;*()%</td>
+      <td>Colour</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>image available</td>
+      <td>ImageAvailable</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Mileage</td>
+      <td>Mileage</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Age Months</td>
+      <td>AgeMonths</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Fuel</td>
+      <td>Fuel</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Transmission</td>
+      <td>Transmission</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>guideprice</td>
+      <td>Guideprice</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>NewPrice</td>
+      <td>Newprice</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Body type</td>
+      <td>BodyType</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Engine</td>
+      <td>Engine</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Mot Expire Date</td>
+      <td>MotExpireDate</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Is Running</td>
+      <td>IsRunning</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Is A Taxi</td>
+      <td>IsATaxi</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Grade</td>
+      <td>Grade</td>
+    </tr>
+  </tbody>
+</table>
+
+<h6><b>• Data Type Optimization</b></h6>
+<li>Converted data types to the most semantically accurate formats, improving computational efficiency and supporting downstream analytical and machine learning processes.</li>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Column</th>
+      <th>Data_Types_Before</th>
+      <th>Data_Types_After</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Column_0</td>
+      <td>int64</td>
+      <td>Int64</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>City</td>
+      <td>object</td>
+      <td>string[python]</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>County</td>
+      <td>object</td>
+      <td>string[python]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Category</td>
+      <td>object</td>
+      <td>string[python]</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Manufacturer</td>
+      <td>object</td>
+      <td>string[python]</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Model</td>
+      <td>object</td>
+      <td>string[python]</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Colour</td>
+      <td>object</td>
+      <td>string[python]</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>ImageAvailable</td>
+      <td>int64</td>
+      <td>Int64</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Mileage</td>
+      <td>int64</td>
+      <td>Int64</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>AgeMonths</td>
+      <td>int64</td>
+      <td>Int64</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Fuel</td>
+      <td>object</td>
+      <td>string[python]</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Transmission</td>
+      <td>object</td>
+      <td>string[python]</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Guideprice</td>
+      <td>int64</td>
+      <td>Int64</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Newprice</td>
+      <td>float64</td>
+      <td>Int64</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>BodyType</td>
+      <td>object</td>
+      <td>string[python]</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Engine</td>
+      <td>int64</td>
+      <td>Int64</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>MotExpireDate</td>
+      <td>object</td>
+      <td>datetime64[ns]</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>IsRunning</td>
+      <td>object</td>
+      <td>string[python]</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>IsATaxi</td>
+      <td>object</td>
+      <td>string[python]</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Grade</td>
+      <td>float64</td>
+      <td>Int64</td>
+    </tr>
+  </tbody>
+</table>
+<img src='D:/pre-inspection-vehicle-grading/Images/col_datatype_chart.png' alt='Chart Missing'><br><br>
+
+<h6><b>• Row Integrity – Missing Values, Duplicates & Valid Records</b></h6>
+<img src='D:/pre-inspection-vehicle-grading/Images/Rows_analysis.png' alt='Chart Missing'>
+<li>Null-value examination completed with category-wise profiling including completeness, uniqueness, and data role classification.</li>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Column</th>
+      <th>Data_Types</th>
+      <th>Total_values</th>
+      <th>Null_values</th>
+      <th>Not_Null_Values</th>
+      <th>Unique_Entries</th>
+      <th>Category_Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12</th>
+      <td>Newprice</td>
+      <td>Int64</td>
+      <td>27079</td>
+      <td>211</td>
+      <td>26868</td>
+      <td>8723</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>MotExpireDate</td>
+      <td>datetime64[ns]</td>
+      <td>27079</td>
+      <td>1955</td>
+      <td>25124</td>
+      <td>499</td>
+      <td>Temporal</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Grade</td>
+      <td>Int64</td>
+      <td>27079</td>
+      <td>11</td>
+      <td>27068</td>
+      <td>6</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+  </tbody>
+</table>
+<li>Following cleansing, the dataset contains <b>zero missing values</b>, ensuring reliability for statistical modeling and ML workflows.</li>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Column</th>
+      <th>Data_Types</th>
+      <th>Total_values</th>
+      <th>Null_values</th>
+      <th>Not_Null_Values</th>
+      <th>Unique_Entries</th>
+      <th>Category_Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>City</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>20</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>County</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>18</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Category</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>3</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Manufacturer</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>54</td>
+      <td>Interval/Ratio</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Model</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>1633</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Colour</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>18</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ImageAvailable</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Mileage</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>24413</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>AgeMonths</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>241</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Fuel</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>3</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Transmission</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Guideprice</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>9833</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Newprice</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>8722</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>BodyType</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>11</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Engine</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>50</td>
+      <td>Interval/Ratio</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>MotExpireDate</td>
+      <td>datetime64[ns]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>499</td>
+      <td>Temporal</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>IsRunning</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>IsATaxi</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Grade</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>6</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>CurrentDate</td>
+      <td>datetime64[us]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>1</td>
+      <td>Temporal</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>DaysLeftTillMotExpiry</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>162</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>MotValid</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+  </tbody>
+</table>
+
+<h6><b>• Outlier Detection & Treatment</b></h6>
+<img src='D:/pre-inspection-vehicle-grading/Images/outliers_fixation_comparison.png' alt='Chart Missing'>
+<li>Outliers were detected using IQR isolation and adjusted where required to prevent skewed model learning and maintain feature stability.</li>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Column</th>
+      <th>Data_Types</th>
+      <th>Total_values</th>
+      <th>Null_values</th>
+      <th>Not_Null_Values</th>
+      <th>Unique_Entries</th>
+      <th>Category_Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>City</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>20</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>County</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>18</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Category</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>3</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Manufacturer</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>54</td>
+      <td>Interval/Ratio</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Model</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>1633</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Colour</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>18</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ImageAvailable</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Mileage</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>11871</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>AgeMonths</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>70</td>
+      <td>Interval/Ratio</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Fuel</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>3</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Transmission</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Guideprice</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>3826</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Newprice</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>3936</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>BodyType</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>11</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Engine</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>50</td>
+      <td>Interval/Ratio</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>MotExpireDate</td>
+      <td>datetime64[ns]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>499</td>
+      <td>Temporal</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>IsRunning</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>IsATaxi</td>
+      <td>string[python]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Grade</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>6</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>CurrentDate</td>
+      <td>datetime64[us]</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>1</td>
+      <td>Temporal</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>DaysLeftTillMotExpiry</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>9</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>MotValid</td>
+      <td>Int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Category_Mapped</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>3</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Fuel_Mapped</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>3</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>IsATaxi_Mapped</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>IsRunning_Mapped</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Transmission_Mapped</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Manufacturer_Mapped</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>54</td>
+      <td>Interval/Ratio</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Model_Mapped</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>1633</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Colour_Mapped</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>18</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>BodyType_Mapped</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>11</td>
+      <td>Nominal/Categorical</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Engine_Mapped</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>50</td>
+      <td>Interval/Ratio</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>AgeYears</td>
+      <td>Float64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>70</td>
+      <td>Interval/Ratio</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>PriceRatio</td>
+      <td>Float64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>37</td>
+      <td>Interval/Ratio</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>MileagePerYear</td>
+      <td>Float64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>13276</td>
+      <td>Potential ID/Series</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>SuspiciousFlag</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>OvervaluedFlag</td>
+      <td>int64</td>
+      <td>26857</td>
+      <td>0</td>
+      <td>26857</td>
+      <td>2</td>
+      <td>Boolean/Binary</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<h4><b>2. Exploratory Data Insights & Analytical Diagnostics</b></h4>
+
+<h6><b>• Geographical Distribution by City</b></h6>
+<iframe src='D:/pre-inspection-vehicle-grading/Images/uk_city_count_map.html' width='800' height='600' frameborder='0'></iframe>
+
+<h6><b>• Cross-Categorical Analysis</b></h6>
+<li>Vehicle Grade vs County</li><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>County</th>
+      <th>Angus (Council Area)</th>
+      <th>Bedfordshire</th>
+      <th>Bristol (Unitary Authority)</th>
+      <th>Derbyshire</th>
+      <th>East Riding of Yorkshire</th>
+      <th>Glasgow (Council Area)</th>
+      <th>Gloucestershire</th>
+      <th>Greater London</th>
+      <th>Greater Manchester</th>
+      <th>Kent</th>
+      <th>Lancashire</th>
+      <th>Nottinghamshire</th>
+      <th>South Yorkshire</th>
+      <th>Staffordshire</th>
+      <th>Tyne and Wear</th>
+      <th>West Midlands</th>
+      <th>West Yorkshire</th>
+      <th>Wiltshire</th>
+    </tr>
+    <tr>
+      <th>Grade</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>86</td>
+      <td>79</td>
+      <td>69</td>
+      <td>67</td>
+      <td>66</td>
+      <td>64</td>
+      <td>54</td>
+      <td>79</td>
+      <td>124</td>
+      <td>76</td>
+      <td>121</td>
+      <td>64</td>
+      <td>71</td>
+      <td>65</td>
+      <td>87</td>
+      <td>78</td>
+      <td>56</td>
+      <td>68</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>185</td>
+      <td>198</td>
+      <td>193</td>
+      <td>186</td>
+      <td>188</td>
+      <td>196</td>
+      <td>198</td>
+      <td>173</td>
+      <td>371</td>
+      <td>172</td>
+      <td>389</td>
+      <td>184</td>
+      <td>191</td>
+      <td>190</td>
+      <td>199</td>
+      <td>180</td>
+      <td>184</td>
+      <td>193</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>332</td>
+      <td>330</td>
+      <td>334</td>
+      <td>300</td>
+      <td>322</td>
+      <td>308</td>
+      <td>315</td>
+      <td>324</td>
+      <td>623</td>
+      <td>326</td>
+      <td>639</td>
+      <td>341</td>
+      <td>325</td>
+      <td>334</td>
+      <td>317</td>
+      <td>312</td>
+      <td>346</td>
+      <td>326</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>666</td>
+      <td>643</td>
+      <td>597</td>
+      <td>640</td>
+      <td>623</td>
+      <td>666</td>
+      <td>649</td>
+      <td>670</td>
+      <td>1242</td>
+      <td>590</td>
+      <td>1268</td>
+      <td>621</td>
+      <td>662</td>
+      <td>612</td>
+      <td>615</td>
+      <td>608</td>
+      <td>621</td>
+      <td>641</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>132</td>
+      <td>117</td>
+      <td>124</td>
+      <td>138</td>
+      <td>125</td>
+      <td>130</td>
+      <td>129</td>
+      <td>137</td>
+      <td>260</td>
+      <td>125</td>
+      <td>289</td>
+      <td>142</td>
+      <td>121</td>
+      <td>119</td>
+      <td>124</td>
+      <td>118</td>
+      <td>119</td>
+      <td>142</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>8</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<li>Transmission vs Taxi Classification</li><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Transmission</th>
+      <th>AUTOMATIC</th>
+      <th>MANUAL</th>
+    </tr>
+    <tr>
+      <th>IsATaxi</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>N</th>
+      <td>10090</td>
+      <td>16703</td>
+    </tr>
+    <tr>
+      <th>Y</th>
+      <td>36</td>
+      <td>28</td>
+    </tr>
+  </tbody>
+</table>
+
+<h6><b>• Advanced Statistical Diagnostics of Numerical Features</b></h6>
+<li>Exploring distribution shape, normality, transformation impact, percentile spread, and outlier density for each numerical feature.</li>
+<img src='D:/pre-inspection-vehicle-grading/Images/AgeYears_detailed_analysis.png'><br>
+<img src='D:/pre-inspection-vehicle-grading/Images/MileagePerYear_detailed_analysis.png'><br>
+<img src='D:/pre-inspection-vehicle-grading/Images/Newprice_detailed_analysis.png'><br>
+<img src='D:/pre-inspection-vehicle-grading/Images/Guideprice_detailed_analysis.png'><br>
+<img src='D:/pre-inspection-vehicle-grading/Images/Grade_detailed_analysis.png'><br><br>
+
+<h6><b>Descriptive Statistics Overview</b></h6>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Standard Deviation</th>
+      <th>COV</th>
+      <th>Kurtosis</th>
+      <th>Kurtosis_Category</th>
+      <th>Kurtosis_Interpretation</th>
+      <th>Skewness</th>
+      <th>Skewness_Category</th>
+      <th>Skewness_Interpretation</th>
+      <th>Mean</th>
+      <th>Mode</th>
+      <th>Median_Absolute_Deviation</th>
+      <th>Sum</th>
+      <th>Variance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Mileage</th>
+      <td>21800.35</td>
+      <td>0.30</td>
+      <td>-1.63</td>
+      <td>Platykurtic (Light-tailed)</td>
+      <td>Values are concentrated near the mean; fewer extreme observations.</td>
+      <td>0.03</td>
+      <td>Fairly-Symmetrical</td>
+      <td>Values are evenly distributed around the center with minimal skew.</td>
+      <td>73671.36</td>
+      <td>47084.00</td>
+      <td>25857.0</td>
+      <td>1978591603.00</td>
+      <td>475255334.59</td>
+    </tr>
+    <tr>
+      <th>AgeMonths</th>
+      <td>28.09</td>
+      <td>0.23</td>
+      <td>-1.64</td>
+      <td>Platykurtic (Light-tailed)</td>
+      <td>Values are concentrated near the mean; fewer extreme observations.</td>
+      <td>-0.05</td>
+      <td>Fairly-Symmetrical</td>
+      <td>Values are evenly distributed around the center with minimal skew.</td>
+      <td>122.13</td>
+      <td>156.00</td>
+      <td>32.0</td>
+      <td>3280073.00</td>
+      <td>788.97</td>
+    </tr>
+    <tr>
+      <th>Guideprice</th>
+      <td>1715.35</td>
+      <td>0.54</td>
+      <td>-1.57</td>
+      <td>Platykurtic (Light-tailed)</td>
+      <td>Values are concentrated near the mean; fewer extreme observations.</td>
+      <td>0.30</td>
+      <td>Fairly-Symmetrical</td>
+      <td>Values are evenly distributed around the center with minimal skew.</td>
+      <td>3151.58</td>
+      <td>1301.00</td>
+      <td>1406.0</td>
+      <td>84641972.00</td>
+      <td>2942421.23</td>
+    </tr>
+    <tr>
+      <th>Newprice</th>
+      <td>5518.87</td>
+      <td>0.28</td>
+      <td>-1.59</td>
+      <td>Platykurtic (Light-tailed)</td>
+      <td>Values are concentrated near the mean; fewer extreme observations.</td>
+      <td>0.20</td>
+      <td>Fairly-Symmetrical</td>
+      <td>Values are evenly distributed around the center with minimal skew.</td>
+      <td>19648.94</td>
+      <td>13340.00</td>
+      <td>5410.0</td>
+      <td>527711484.00</td>
+      <td>30457965.46</td>
+    </tr>
+    <tr>
+      <th>Engine</th>
+      <td>6.43</td>
+      <td>0.36</td>
+      <td>5.75</td>
+      <td>Leptokurtic (Heavy-tailed)</td>
+      <td>Higher chance of extreme values; distribution has heavy tails.</td>
+      <td>1.74</td>
+      <td>Highly-Skewed</td>
+      <td>Distribution is heavily unbalanced; likely affected by extreme values.</td>
+      <td>17.85</td>
+      <td>20.00</td>
+      <td>4.0</td>
+      <td>479398.00</td>
+      <td>41.39</td>
+    </tr>
+    <tr>
+      <th>DaysLeftTillMotExpiry</th>
+      <td>3.48</td>
+      <td>1.66</td>
+      <td>-0.81</td>
+      <td>Mesokurtic (Normal-like)</td>
+      <td>Shape resembles a normal distribution.</td>
+      <td>1.08</td>
+      <td>Highly-Skewed</td>
+      <td>Distribution is heavily unbalanced; likely affected by extreme values.</td>
+      <td>2.09</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>56226.00</td>
+      <td>12.13</td>
+    </tr>
+    <tr>
+      <th>ImageAvailable</th>
+      <td>0.50</td>
+      <td>0.90</td>
+      <td>-1.95</td>
+      <td>Platykurtic (Light-tailed)</td>
+      <td>Values are concentrated near the mean; fewer extreme observations.</td>
+      <td>-0.22</td>
+      <td>Fairly-Symmetrical</td>
+      <td>Values are evenly distributed around the center with minimal skew.</td>
+      <td>0.56</td>
+      <td>1.00</td>
+      <td>0.0</td>
+      <td>14906.00</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>Grade</th>
+      <td>1.03</td>
+      <td>0.30</td>
+      <td>0.74</td>
+      <td>Mesokurtic (Normal-like)</td>
+      <td>Shape resembles a normal distribution.</td>
+      <td>-0.44</td>
+      <td>Fairly-Symmetrical</td>
+      <td>Values are evenly distributed around the center with minimal skew.</td>
+      <td>3.43</td>
+      <td>4.00</td>
+      <td>1.0</td>
+      <td>92073.00</td>
+      <td>1.06</td>
+    </tr>
+    <tr>
+      <th>Category_Mapped</th>
+      <td>0.75</td>
+      <td>0.40</td>
+      <td>-1.17</td>
+      <td>Platykurtic (Light-tailed)</td>
+      <td>Values are concentrated near the mean; fewer extreme observations.</td>
+      <td>0.24</td>
+      <td>Fairly-Symmetrical</td>
+      <td>Values are evenly distributed around the center with minimal skew.</td>
+      <td>1.86</td>
+      <td>2.00</td>
+      <td>1.0</td>
+      <td>49869.00</td>
+      <td>0.56</td>
+    </tr>
+    <tr>
+      <th>IsATaxi_Mapped</th>
+      <td>0.05</td>
+      <td>20.46</td>
+      <td>414.72</td>
+      <td>Leptokurtic (Heavy-tailed)</td>
+      <td>Higher chance of extreme values; distribution has heavy tails.</td>
+      <td>20.41</td>
+      <td>Highly-Skewed</td>
+      <td>Distribution is heavily unbalanced; likely affected by extreme values.</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>64.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>IsRunning_Mapped</th>
+      <td>0.20</td>
+      <td>0.21</td>
+      <td>18.96</td>
+      <td>Leptokurtic (Heavy-tailed)</td>
+      <td>Higher chance of extreme values; distribution has heavy tails.</td>
+      <td>-4.58</td>
+      <td>Highly-Skewed</td>
+      <td>Distribution is heavily unbalanced; likely affected by extreme values.</td>
+      <td>0.96</td>
+      <td>1.00</td>
+      <td>0.0</td>
+      <td>25734.00</td>
+      <td>0.04</td>
+    </tr>
+    <tr>
+      <th>Transmission_Mapped</th>
+      <td>0.48</td>
+      <td>1.29</td>
+      <td>-1.74</td>
+      <td>Platykurtic (Light-tailed)</td>
+      <td>Values are concentrated near the mean; fewer extreme observations.</td>
+      <td>0.51</td>
+      <td>Moderately-Skewed</td>
+      <td>Distribution shows noticeable skew but not extreme.</td>
+      <td>0.38</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>10126.00</td>
+      <td>0.23</td>
+    </tr>
+  </tbody>
+</table>
+
+<h6><b>Quantile Spread and Boundary Insights</b></h6>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Min</th>
+      <th>Max</th>
+      <th>Range</th>
+      <th>Fifty_percentile</th>
+      <th>Ninetyfive_percentile</th>
+      <th>First_quntile</th>
+      <th>Third_quntile</th>
+      <th>Median</th>
+      <th>IQR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Mileage</th>
+      <td>47084</td>
+      <td>100816</td>
+      <td>53732</td>
+      <td>72941.0</td>
+      <td>100816.0</td>
+      <td>47084.0</td>
+      <td>47084.0</td>
+      <td>72941.0</td>
+      <td>53732.0</td>
+    </tr>
+    <tr>
+      <th>AgeMonths</th>
+      <td>87</td>
+      <td>156</td>
+      <td>69</td>
+      <td>124.0</td>
+      <td>156.0</td>
+      <td>87.0</td>
+      <td>87.0</td>
+      <td>124.0</td>
+      <td>69.0</td>
+    </tr>
+    <tr>
+      <th>Guideprice</th>
+      <td>1301</td>
+      <td>5502</td>
+      <td>4201</td>
+      <td>2707.0</td>
+      <td>5502.0</td>
+      <td>1301.0</td>
+      <td>1301.0</td>
+      <td>2707.0</td>
+      <td>4201.0</td>
+    </tr>
+    <tr>
+      <th>Newprice</th>
+      <td>13340</td>
+      <td>26995</td>
+      <td>13655</td>
+      <td>18750.0</td>
+      <td>26995.0</td>
+      <td>13340.0</td>
+      <td>13340.0</td>
+      <td>18750.0</td>
+      <td>13655.0</td>
+    </tr>
+    <tr>
+      <th>Engine</th>
+      <td>0</td>
+      <td>62</td>
+      <td>62</td>
+      <td>16.0</td>
+      <td>30.0</td>
+      <td>9.0</td>
+      <td>10.0</td>
+      <td>16.0</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>DaysLeftTillMotExpiry</th>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>0.0</td>
+      <td>8.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>ImageAvailable</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Grade</th>
+      <td>1</td>
+      <td>9</td>
+      <td>8</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>Category_Mapped</th>
+      <td>1</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>IsATaxi_Mapped</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>IsRunning_Mapped</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>Transmission_Mapped</th>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<h6><b>Feature Correlation With Target Variable (Grade)</b></h6>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature</th>
+      <th>Correlation</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Guideprice</td>
+      <td>-0.60</td>
+      <td>Inversely Proportional</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AgeYears</td>
+      <td>0.59</td>
+      <td>Directly Proportional</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>AgeMonths</td>
+      <td>0.59</td>
+      <td>Directly Proportional</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ImageAvailable</td>
+      <td>0.56</td>
+      <td>Directly Proportional</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>PriceRatio</td>
+      <td>-0.55</td>
+      <td>Inversely Proportional</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Mileage</td>
+      <td>0.49</td>
+      <td>Directly Proportional</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Category_Mapped</td>
+      <td>-0.33</td>
+      <td>Inversely Proportional</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>OvervaluedFlag</td>
+      <td>-0.28</td>
+      <td>Inversely Proportional</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Newprice</td>
+      <td>-0.26</td>
+      <td>Inversely Proportional</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Transmission_Mapped</td>
+      <td>-0.20</td>
+      <td>Inversely Proportional</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>SuspiciousFlag</td>
+      <td>0.16</td>
+      <td>Directly Proportional</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Model_Mapped</td>
+      <td>-0.13</td>
+      <td>Inversely Proportional</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>IsRunning_Mapped</td>
+      <td>-0.08</td>
+      <td>Inversely Proportional</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Engine</td>
+      <td>-0.08</td>
+      <td>Inversely Proportional</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>DaysLeftTillMotExpiry</td>
+      <td>0.08</td>
+      <td>Directly Proportional</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>MotValid</td>
+      <td>0.08</td>
+      <td>Directly Proportional</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>MileagePerYear</td>
+      <td>0.06</td>
+      <td>Directly Proportional</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>BodyType_Mapped</td>
+      <td>-0.05</td>
+      <td>Inversely Proportional</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Manufacturer_Mapped</td>
+      <td>-0.04</td>
+      <td>Inversely Proportional</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>IsATaxi_Mapped</td>
+      <td>0.03</td>
+      <td>Directly Proportional</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Colour_Mapped</td>
+      <td>0.02</td>
+      <td>Directly Proportional</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Fuel_Mapped</td>
+      <td>0.02</td>
+      <td>Directly Proportional</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Engine_Mapped</td>
+      <td>-0.01</td>
+      <td>Inversely Proportional</td>
+    </tr>
+  </tbody>
+</table>
+
+<h6><b>Target Attribute Diagnostic Summary</b></h6>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Target_Value</th>
+      <th>Frequency</th>
+      <th>Percentage</th>
+      <th>Target_Label</th>
+      <th>Target_Interpretation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4</td>
+      <td>12634</td>
+      <td>47.04</td>
+      <td>Majority Class</td>
+      <td>This value is dominant in the dataset. No action needed.</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>6454</td>
+      <td>24.03</td>
+      <td>Well-Represented</td>
+      <td>This value is well-represented. Model can learn this class easily.</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>3770</td>
+      <td>14.04</td>
+      <td>Moderate Frequency</td>
+      <td>Moderate frequency — monitor predictions for this class.</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5</td>
+      <td>2591</td>
+      <td>9.65</td>
+      <td>Moderate Frequency</td>
+      <td>Moderate frequency — monitor predictions for this class.</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1374</td>
+      <td>5.12</td>
+      <td>Moderate Frequency</td>
+      <td>Moderate frequency — monitor predictions for this class.</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>9</td>
+      <td>34</td>
+      <td>0.13</td>
+      <td>Low Frequency / Rare</td>
+      <td>Very few samples — may require oversampling (SMOTE), class weights, or merging.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<h4><b>3. Machine Learning Strategy & Model Performance</b></h4>
+
+<h6><b>Model Evaluation – Weighted Score Performance</b></h6>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Model</th>
+      <th>Accuracy</th>
+      <th>Precision</th>
+      <th>Recall</th>
+      <th>F1_score</th>
+      <th>Cross_validation</th>
+      <th>matthews_corrcoef</th>
+      <th>cohen_kappa_score</th>
+      <th>balanced_accuracy_score</th>
+      <th>hamming_loss</th>
+      <th>jaccard_score</th>
+      <th>Total Score</th>
+      <th>Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Logistic Regression</td>
+      <td>0.559568</td>
+      <td>0.459250</td>
+      <td>0.559568</td>
+      <td>0.483848</td>
+      <td>0.559423</td>
+      <td>0.332114</td>
+      <td>0.310462</td>
+      <td>0.296998</td>
+      <td>0.440432</td>
+      <td>0.179139</td>
+      <td>0.472791</td>
+      <td>47.28</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Linear SVM</td>
+      <td>0.555473</td>
+      <td>0.448694</td>
+      <td>0.555473</td>
+      <td>0.488954</td>
+      <td>0.557509</td>
+      <td>0.308651</td>
+      <td>0.293558</td>
+      <td>0.278462</td>
+      <td>0.444527</td>
+      <td>0.177162</td>
+      <td>0.467743</td>
+      <td>46.77</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Kernel SVM (RBF)</td>
+      <td>0.564594</td>
+      <td>0.461785</td>
+      <td>0.564594</td>
+      <td>0.489333</td>
+      <td>0.553113</td>
+      <td>0.336144</td>
+      <td>0.314768</td>
+      <td>0.297889</td>
+      <td>0.435406</td>
+      <td>0.182199</td>
+      <td>0.476210</td>
+      <td>47.62</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Stochastic Gradient Descent</td>
+      <td>0.310499</td>
+      <td>0.362333</td>
+      <td>0.310499</td>
+      <td>0.271274</td>
+      <td>0.485990</td>
+      <td>0.180612</td>
+      <td>0.116545</td>
+      <td>0.227356</td>
+      <td>0.689501</td>
+      <td>0.083246</td>
+      <td>0.286266</td>
+      <td>28.63</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Ridge Classifier</td>
+      <td>0.572226</td>
+      <td>0.473982</td>
+      <td>0.572226</td>
+      <td>0.505914</td>
+      <td>0.570283</td>
+      <td>0.348387</td>
+      <td>0.331686</td>
+      <td>0.304857</td>
+      <td>0.427774</td>
+      <td>0.190490</td>
+      <td>0.488342</td>
+      <td>48.83</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Decision Tree</td>
+      <td>0.467424</td>
+      <td>0.465475</td>
+      <td>0.467424</td>
+      <td>0.466007</td>
+      <td>0.456920</td>
+      <td>0.225618</td>
+      <td>0.225554</td>
+      <td>0.327437</td>
+      <td>0.532576</td>
+      <td>0.207736</td>
+      <td>0.414789</td>
+      <td>41.48</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Random Forest</td>
+      <td>0.548213</td>
+      <td>0.506090</td>
+      <td>0.548213</td>
+      <td>0.518075</td>
+      <td>0.538374</td>
+      <td>0.310742</td>
+      <td>0.305514</td>
+      <td>0.342354</td>
+      <td>0.451787</td>
+      <td>0.231008</td>
+      <td>0.480833</td>
+      <td>48.08</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Extra Trees Classifier</td>
+      <td>0.535555</td>
+      <td>0.497565</td>
+      <td>0.535555</td>
+      <td>0.511251</td>
+      <td>0.529324</td>
+      <td>0.297931</td>
+      <td>0.294607</td>
+      <td>0.343024</td>
+      <td>0.464445</td>
+      <td>0.227541</td>
+      <td>0.471259</td>
+      <td>47.13</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Bagging Classifier</td>
+      <td>0.517126</td>
+      <td>0.488688</td>
+      <td>0.517126</td>
+      <td>0.499419</td>
+      <td>0.513963</td>
+      <td>0.276941</td>
+      <td>0.275239</td>
+      <td>0.338917</td>
+      <td>0.482874</td>
+      <td>0.223771</td>
+      <td>0.456369</td>
+      <td>45.64</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Gradient Boosting</td>
+      <td>0.573157</td>
+      <td>0.519133</td>
+      <td>0.573157</td>
+      <td>0.528989</td>
+      <td>0.575558</td>
+      <td>0.346120</td>
+      <td>0.336532</td>
+      <td>0.346567</td>
+      <td>0.426843</td>
+      <td>0.233261</td>
+      <td>0.502134</td>
+      <td>50.21</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>AdaBoost</td>
+      <td>0.543931</td>
+      <td>0.471675</td>
+      <td>0.543931</td>
+      <td>0.484758</td>
+      <td>0.556629</td>
+      <td>0.313094</td>
+      <td>0.296888</td>
+      <td>0.363018</td>
+      <td>0.456069</td>
+      <td>0.201910</td>
+      <td>0.469735</td>
+      <td>46.97</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>KNN</td>
+      <td>0.517498</td>
+      <td>0.478378</td>
+      <td>0.517498</td>
+      <td>0.490709</td>
+      <td>0.512981</td>
+      <td>0.277995</td>
+      <td>0.274951</td>
+      <td>0.338269</td>
+      <td>0.482502</td>
+      <td>0.214311</td>
+      <td>0.453126</td>
+      <td>45.31</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Gaussian NB</td>
+      <td>0.525503</td>
+      <td>0.473322</td>
+      <td>0.525503</td>
+      <td>0.476914</td>
+      <td>0.524824</td>
+      <td>0.305091</td>
+      <td>0.291079</td>
+      <td>0.359985</td>
+      <td>0.474497</td>
+      <td>0.191137</td>
+      <td>0.456956</td>
+      <td>45.70</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Multinomial NB</td>
+      <td>0.422189</td>
+      <td>0.480939</td>
+      <td>0.422189</td>
+      <td>0.427709</td>
+      <td>0.423976</td>
+      <td>0.231673</td>
+      <td>0.223062</td>
+      <td>0.393112</td>
+      <td>0.577811</td>
+      <td>0.178409</td>
+      <td>0.390447</td>
+      <td>39.04</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Neural Network (MLP)</td>
+      <td>0.474684</td>
+      <td>0.225324</td>
+      <td>0.474684</td>
+      <td>0.305590</td>
+      <td>0.501653</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.166667</td>
+      <td>0.525316</td>
+      <td>0.079114</td>
+      <td>0.319106</td>
+      <td>31.91</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>XGBoost</td>
+      <td>0.561243</td>
+      <td>0.503707</td>
+      <td>0.561243</td>
+      <td>0.521294</td>
+      <td>0.559423</td>
+      <td>0.329908</td>
+      <td>0.322090</td>
+      <td>0.342661</td>
+      <td>0.438757</td>
+      <td>0.229394</td>
+      <td>0.490530</td>
+      <td>49.05</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>LightGBM</td>
+      <td>0.569806</td>
+      <td>0.509886</td>
+      <td>0.569806</td>
+      <td>0.527256</td>
+      <td>0.566353</td>
+      <td>0.344803</td>
+      <td>0.335900</td>
+      <td>0.355948</td>
+      <td>0.430194</td>
+      <td>0.237550</td>
+      <td>0.499031</td>
+      <td>49.90</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>CatBoost</td>
+      <td>0.573529</td>
+      <td>0.517638</td>
+      <td>0.573529</td>
+      <td>0.531696</td>
+      <td>0.562784</td>
+      <td>0.348381</td>
+      <td>0.339338</td>
+      <td>0.353333</td>
+      <td>0.426471</td>
+      <td>0.238104</td>
+      <td>0.502231</td>
+      <td>50.22</td>
+    </tr>
+  </tbody>
+</table>
+<img src='D:/pre-inspection-vehicle-grading/Images/Top_model_selection.png'><br><br>
+
+<h6><b>Sample Extract (First 10 Rows)</b></h6>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>City</th>
+      <th>County</th>
+      <th>Category</th>
+      <th>Manufacturer</th>
+      <th>Model</th>
+      <th>Colour</th>
+      <th>ImageAvailable</th>
+      <th>Mileage</th>
+      <th>AgeMonths</th>
+      <th>Fuel</th>
+      <th>Transmission</th>
+      <th>Guideprice</th>
+      <th>Newprice</th>
+      <th>BodyType</th>
+      <th>Engine</th>
+      <th>MotExpireDate</th>
+      <th>IsRunning</th>
+      <th>IsATaxi</th>
+      <th>Grade</th>
+      <th>CurrentDate</th>
+      <th>DaysLeftTillMotExpiry</th>
+      <th>MotValid</th>
+      <th>Category_Mapped</th>
+      <th>Fuel_Mapped</th>
+      <th>IsATaxi_Mapped</th>
+      <th>IsRunning_Mapped</th>
+      <th>Transmission_Mapped</th>
+      <th>Manufacturer_Mapped</th>
+      <th>Model_Mapped</th>
+      <th>Colour_Mapped</th>
+      <th>BodyType_Mapped</th>
+      <th>Engine_Mapped</th>
+      <th>AgeYears</th>
+      <th>PriceRatio</th>
+      <th>MileagePerYear</th>
+      <th>SuspiciousFlag</th>
+      <th>OvervaluedFlag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Bristol</td>
+      <td>Bristol (Unitary Authority)</td>
+      <td>Standard</td>
+      <td>MINI</td>
+      <td>HATCHBACK DIESEL</td>
+      <td>Red</td>
+      <td>0</td>
+      <td>70935</td>
+      <td>93</td>
+      <td>DIESEL</td>
+      <td>MANUAL</td>
+      <td>3044</td>
+      <td>14485</td>
+      <td>H</td>
+      <td>16</td>
+      <td>2025-07-16</td>
+      <td>Y</td>
+      <td>N</td>
+      <td>2</td>
+      <td>2025-12-09</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.75</td>
+      <td>0.21</td>
+      <td>9152.9</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Derby</td>
+      <td>Derbyshire</td>
+      <td>Standard</td>
+      <td>VAUXHALL</td>
+      <td>ASTRA DIESEL HATCHBACK</td>
+      <td>White</td>
+      <td>1</td>
+      <td>80291</td>
+      <td>125</td>
+      <td>DIESEL</td>
+      <td>MANUAL</td>
+      <td>1796</td>
+      <td>20320</td>
+      <td>H</td>
+      <td>17</td>
+      <td>2026-02-14</td>
+      <td>Y</td>
+      <td>N</td>
+      <td>4</td>
+      <td>2025-12-09</td>
+      <td>8</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>10.42</td>
+      <td>0.09</td>
+      <td>7705.47</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Sheffield</td>
+      <td>South Yorkshire</td>
+      <td>Trade</td>
+      <td>SEAT</td>
+      <td>IBIZA SPORT COUPE</td>
+      <td>Black</td>
+      <td>1</td>
+      <td>77043</td>
+      <td>133</td>
+      <td>PETROL</td>
+      <td>MANUAL</td>
+      <td>1416</td>
+      <td>13340</td>
+      <td>H</td>
+      <td>12</td>
+      <td>2025-02-18</td>
+      <td>Y</td>
+      <td>N</td>
+      <td>4</td>
+      <td>2025-12-09</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>11.08</td>
+      <td>0.11</td>
+      <td>6953.34</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bradford</td>
+      <td>West Yorkshire</td>
+      <td>Trade</td>
+      <td>VAUXHALL</td>
+      <td>CORSA HATCHBACK</td>
+      <td>White</td>
+      <td>1</td>
+      <td>76305</td>
+      <td>128</td>
+      <td>PETROL</td>
+      <td>MANUAL</td>
+      <td>1301</td>
+      <td>13340</td>
+      <td>H</td>
+      <td>10</td>
+      <td>2025-07-05</td>
+      <td>Y</td>
+      <td>N</td>
+      <td>4</td>
+      <td>2025-12-09</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>10.67</td>
+      <td>0.1</td>
+      <td>7151.36</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Derby</td>
+      <td>Derbyshire</td>
+      <td>Trade</td>
+      <td>FORD</td>
+      <td>GALAXY DIESEL ESTATE</td>
+      <td>Black</td>
+      <td>0</td>
+      <td>100816</td>
+      <td>101</td>
+      <td>DIESEL</td>
+      <td>AUTOMATIC</td>
+      <td>1691</td>
+      <td>26995</td>
+      <td>E</td>
+      <td>20</td>
+      <td>2025-03-03</td>
+      <td>Y</td>
+      <td>Y</td>
+      <td>4</td>
+      <td>2025-12-09</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>4</td>
+      <td>2</td>
+      <td>1</td>
+      <td>4</td>
+      <td>8.42</td>
+      <td>0.06</td>
+      <td>11973.4</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Gloucester</td>
+      <td>Gloucestershire</td>
+      <td>Premium</td>
+      <td>BMW</td>
+      <td>4 SERIES GRAN DIESEL COUPE</td>
+      <td>Black</td>
+      <td>0</td>
+      <td>83508</td>
+      <td>87</td>
+      <td>DIESEL</td>
+      <td>AUTOMATIC</td>
+      <td>5502</td>
+      <td>26995</td>
+      <td>H</td>
+      <td>20</td>
+      <td>2026-01-08</td>
+      <td>Y</td>
+      <td>N</td>
+      <td>2</td>
+      <td>2025-12-09</td>
+      <td>8</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>5</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>7.25</td>
+      <td>0.2</td>
+      <td>11518.34</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Dundee</td>
+      <td>Angus (Council Area)</td>
+      <td>Premium</td>
+      <td>MERCEDES-BENZ</td>
+      <td>GLA DIESEL HATCHBACK</td>
+      <td>Black</td>
+      <td>0</td>
+      <td>53351</td>
+      <td>87</td>
+      <td>DIESEL</td>
+      <td>AUTOMATIC</td>
+      <td>5502</td>
+      <td>26995</td>
+      <td>H</td>
+      <td>21</td>
+      <td>2025-09-17</td>
+      <td>Y</td>
+      <td>N</td>
+      <td>1</td>
+      <td>2025-12-09</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>5</td>
+      <td>6</td>
+      <td>2</td>
+      <td>0</td>
+      <td>5</td>
+      <td>7.25</td>
+      <td>0.2</td>
+      <td>7358.76</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Luton</td>
+      <td>Bedfordshire</td>
+      <td>Trade</td>
+      <td>NISSAN</td>
+      <td>QASHQAI+2 DIESEL HATCHBACK</td>
+      <td>White</td>
+      <td>0</td>
+      <td>74099</td>
+      <td>96</td>
+      <td>DIESEL</td>
+      <td>MANUAL</td>
+      <td>4751</td>
+      <td>21220</td>
+      <td>H</td>
+      <td>15</td>
+      <td>2025-03-10</td>
+      <td>Y</td>
+      <td>N</td>
+      <td>4</td>
+      <td>2025-12-09</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>6</td>
+      <td>7</td>
+      <td>1</td>
+      <td>0</td>
+      <td>6</td>
+      <td>8.0</td>
+      <td>0.22</td>
+      <td>9262.38</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Nottingham</td>
+      <td>Nottinghamshire</td>
+      <td>Standard</td>
+      <td>VOLKSWAGEN</td>
+      <td>SCIROCCO DIESEL COUPE</td>
+      <td>Silver</td>
+      <td>1</td>
+      <td>100816</td>
+      <td>131</td>
+      <td>DIESEL</td>
+      <td>MANUAL</td>
+      <td>3253</td>
+      <td>22370</td>
+      <td>C</td>
+      <td>20</td>
+      <td>2025-08-13</td>
+      <td>Y</td>
+      <td>N</td>
+      <td>4</td>
+      <td>2025-12-09</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7</td>
+      <td>8</td>
+      <td>3</td>
+      <td>2</td>
+      <td>4</td>
+      <td>10.92</td>
+      <td>0.15</td>
+      <td>9232.23</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Blackpool</td>
+      <td>Lancashire</td>
+      <td>Premium</td>
+      <td>VOLKSWAGEN</td>
+      <td>POLO HATCHBACK</td>
+      <td>Silver</td>
+      <td>0</td>
+      <td>47084</td>
+      <td>87</td>
+      <td>PETROL</td>
+      <td>MANUAL</td>
+      <td>5063</td>
+      <td>13340</td>
+      <td>H</td>
+      <td>10</td>
+      <td>2025-09-08</td>
+      <td>Y</td>
+      <td>N</td>
+      <td>4</td>
+      <td>2025-12-09</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7</td>
+      <td>9</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>7.25</td>
+      <td>0.38</td>
+      <td>6494.34</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+</div></body></html>
